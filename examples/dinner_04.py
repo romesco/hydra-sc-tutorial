@@ -69,10 +69,9 @@ class ProjDinnerConf(DinnerConf):
 class ProjCookConf(CookConf):
     oven_temp = 400
     num_pans = 1
-# -------------------------------------------------
 
 
-
+# -------- Registration --------
 cs = ConfigStore.instance()
 
 # Top Level Config (in this example, L2 which is highest is `DinnerConf`)
@@ -89,7 +88,8 @@ cs.store(group="tasks/dine", name="default", node=DineConf)
 # The overriding task node for the cook task, `ProjCookConf`
 cs.store(group="tasks/cook", name="proj", node=ProjCookConf)
 
-# The hydra entry point 
+
+# -------- Hydra Entry Point --------
 @hydra.main(config_name="toplvlconfig", config_path=None)
 def dine(cfg):
     print(OmegaConf.to_yaml(cfg))

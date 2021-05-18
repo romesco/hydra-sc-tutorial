@@ -13,12 +13,14 @@ class DineConf:
     room: str = "dining"
 
 
+# -------- Registration --------
 cs = ConfigStore.instance()
 
 # Top Level Config (in this example, L0 which is highest is `DineConf`)
 cs.store(name="toplvlconfig", node=DineConf)
 
-# The hydra entry point 
+
+# -------- Hydra Entry Point --------
 @hydra.main(config_name="toplvlconfig", config_path=None)
 def dine(cfg):
     print(OmegaConf.to_yaml(cfg))

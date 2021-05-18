@@ -37,7 +37,9 @@ class TasksConf:
     shop: ShopConf = MISSING
     cook: CookConf = MISSING
     dine: DineConf = MISSING
+     
 
+# -------- Registration --------
 cs = ConfigStore.instance()
 
 # Top Level Config (in this example, L1 which is highest is `TasksConf`)
@@ -47,7 +49,8 @@ cs.store(group="shop", name="default", node=ShopConf)
 cs.store(group="cook", name="default", node=CookConf)
 cs.store(group="dine", name="default", node=DineConf)
 
-# The hydra entry point 
+
+# -------- Hydra Entry Point --------
 @hydra.main(config_name="toplvlconfig", config_path=None)
 def dine(cfg):
     print(OmegaConf.to_yaml(cfg))
